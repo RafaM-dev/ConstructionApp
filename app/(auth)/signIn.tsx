@@ -1,78 +1,63 @@
 import React, { useState } from 'react'
-import { Alert, Image, ScrollView, Text, View } from 'react-native'
+import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { Link, router } from 'expo-router'
 import CustomButton from '@/components/CustomButton'
 import FormField from '@/components/FormField'
-
-interface User {
-	id: string;
-	avatar: string;
-	username: string;
-	$id: string; // Add the $id property
-}
-
-interface GlobalContextType {
-	isLoggedIn: boolean;
-	user: User | null;
-	setUser: (user: any) => void;
-	isLoading: boolean;
-	setIsLoggedIn: (isLoggedIn: boolean) => void;
-}
 
 const SignIn = () => {
     const [form, setForm] = useState({
         email: '',
         password: ''
     })
+
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const submit = async () => {
         console.log("first")
     }
 
-
     return (
-        <SafeAreaView className='bg-primary h-full'>
+        <SafeAreaView className=' bg-blue-100 h-full'>
+            <View className='absolute top-80 left-0 right-28  h-56 bg-white transform -rotate-[33.3deg] origin-bottom-right'></View>
+            <View className='absolute top-80 left-28 right-0 h-56 bg-white transform rotate-[33.3deg] origin-bottom-left'></View>
+            <View className='absolute bg-white h-[45%] bottom-0 left-0 right-0'></View>
             <ScrollView>
-                <View className='w-full justify-center min-h-[82vh] px-4 my-6'>
-                    {/* <Image
-                        source={images.logo}
-                        resizeMode='contain'
-                        className='w-[115px] h-[35px]'
-                    /> */}
-                    <Text className='text-2xl text-white text-semibold mt-10 font-psemibold'>Log In to Aora</Text>
-                    <FormField
-                        title="Email"
-                        value={form.email}
-                        handleChangeText={(e: any) => setForm({ ...form, email: e })}
-                        otherStyles="mt-7"
-                        keyBoardType="email-address"
-                        placeholder='Enter your email address'
-                    />
-                    <FormField
-                        title="Password"
-                        value={form.password}
-                        handleChangeText={(e: any) => setForm({ ...form, password: e })}
-                        otherStyles="mt-7"
-                        placeholder='Enter your password'
-                    />
-                    <CustomButton
-                        title='Sign In'
-                        handlePress={submit}
-                        containerStyles="mt-7"
-                        isLoading={isSubmitting}
-                    />
-                    <View className='justify-center pt-5 flex-row gap-2'>
-                        <Text className='text-lg text-gray-100 font-pregular'>
-                            Don't have account?
-                        </Text>
-                        <Link href="/" className='text-lg font-psemibold text-secondary'>Sign Up</Link>
+                    <View className='w-full justify-between min-h-[88vh] px-4 my-6'>
+                        <View className='flex justify-center items-center flex-row gap-4 mt-10'>
+                            <View className='bg-secondary rounded-full w-16 h-16'></View>
+                            <View className='align-middle'>
+                                <Text className='text-2xl font-psemibold'>App</Text>
+                                <Text className='text-2xl font-psemibold'>Construction</Text>
+                            </View>
+                        </View>
+                        <View>
+                            <Text className='text-3xl text-center font-psemibold'>Bienvenido</Text>
+                            <FormField
+                                title="Correo Electronico"
+                                value={form.email}
+                                handleChangeText={(e: any) => setForm({ ...form, email: e })}
+                                otherStyles="mt-9"
+                                keyBoardType="email-address"
+                                placeholder='Ingresa tu correo electronico'
+                            />
+                            <FormField
+                                title="Contraseña"
+                                value={form.password}
+                                handleChangeText={(e: any) => setForm({ ...form, password: e })}
+                                otherStyles="mt-10"
+                                placeholder='Ingrese su contraseña'
+                            />
+                            <CustomButton
+                                title='Ingresar'
+                                handlePress={submit}
+                                containerStyles="mt-10"
+                                isLoading={isSubmitting}
+                            />
+                        </View>
                     </View>
-                </View>
             </ScrollView>
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 

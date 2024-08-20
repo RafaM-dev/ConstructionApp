@@ -17,7 +17,7 @@ const CustomButton = ({ title, handlePress, containerStyles, textStyles, isLoadi
             activeOpacity={0.7}
             disabled={isLoading}
         >
-            <Text className={`text-primary text-lg font-psemibold ${textStyles}`}>{title}</Text>
+            <Text className={`text-white text-lg font-psemibold ${textStyles}`}>{title}</Text>
         </TouchableOpacity>
     )
 }
